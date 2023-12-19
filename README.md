@@ -1,9 +1,9 @@
 # Server-Side APIs: Weather Dashboard - Yusuf Usman
 
 ## Deployed Application
-Application Url - 
+Application Url - https://y-usman.github.io/Weather-Dashboard/
 
-Application Image - 
+Application Image - ![Dashboard Screenshot](assets/weather-dashboard.png)
 
 ## Installation
 
