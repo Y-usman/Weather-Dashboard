@@ -7,12 +7,6 @@ Application Image - ![Dashboard Screenshot](assets/weather-dashboard.png)
 
 ## Installation
 
-To access the application correctly, create a config.js file in the scripts directory using the following format:
-
-const config = {
-    openWeatherMapApiKey: 'YOUR_API_KEY', // Make sure to replace 'YOUR_API_KEY' with your actual API key.
-  };
-
 ## Credits
 
 ## License
