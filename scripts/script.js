@@ -37,7 +37,7 @@ async function getCurrentLocation() {
 
 // Function to get coordinates from the Geocoding API
 async function getCoordinates(cityName) {
-    const geocodingAPIKey = openWeatherMapAPIKey; 
+    const geocodingAPIKey = openWeatherMapApiKey; 
     const geocodingAPIURL = `https://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=1&appid=${geocodingAPIKey}`;
   
     try {
@@ -60,7 +60,7 @@ async function getCoordinates(cityName) {
 
 // Function to get weather forecast from OpenWeatherMap API
 async function getWeatherForecast(lat, lon) {
-    const apiURL = `${openWeatherMapBaseURL}?lat=${lat}&lon=${lon}&appid=${openWeatherMapAPIKey}`;
+    const apiURL = `${openWeatherMapBaseURL}?lat=${lat}&lon=${lon}&appid=${openWeatherMapApiKey}`;
   
     try {
       const response = await fetch(apiURL);
