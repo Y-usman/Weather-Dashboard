@@ -1,6 +1,7 @@
 // Constants for API
-const openWeatherMapAPIKey = config.openWeatherMapApiKey;
+
 const openWeatherMapBaseURL = 'https://api.openweathermap.org/data/2.5/forecast';
+const openWeatherMapApiKey =  '11966dd3c33cf5ecf3805c098283bfbf';
 
 const iconMappings = {
   "01d": "wb_sunny",      // clear sky
