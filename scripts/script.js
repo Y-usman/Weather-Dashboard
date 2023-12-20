@@ -74,47 +74,61 @@ async function getWeatherForecast(lat, lon) {
 
 // Function to update the UI with weather data
 function updateWeatherUI(weatherData) {
-    try {
-      const currentConditions = weatherData.list[0];
-  
-      // Convert temperature from Kelvin to Celsius
-      const temperatureCelsius = currentConditions.main.temp - 273.15;
-  
-      // Update current conditions UI
-      document.getElementById('today').innerHTML = `
-        <h2>${weatherData.city.name}, ${weatherData.city.country}</h2>
-        <p>Date: ${new Date(currentConditions.dt * 1000).toLocaleDateString()}</p>
-        <p>Temperature: ${temperatureCelsius.toFixed(1)} °C</p>
-        <p>Humidity: ${currentConditions.main.humidity} %</p>
-        <p>Wind Speed: ${currentConditions.wind.speed} m/s</p>
-        <i class="material-icons">${iconMappings[currentConditions.weather[0].icon]}</i>
-      `;
-  
-      // Update 5-day forecast UI
-      const forecastContainer = document.getElementById('forecast');
-      forecastContainer.innerHTML = '';
-  
-      for (let i = 1; i < 6; i++) {
-        const forecast = weatherData.list[i * 8];
-  
-        if (forecast) {
-          // Convert temperature from Kelvin to Celsius
-          const forecastTemperatureCelsius = forecast.main.temp - 273.15;
-  
-          forecastContainer.innerHTML += `
-            <div class="col">
-              <h3>${new Date(forecast.dt * 1000).toLocaleDateString()}</h3>
-              <p>Temperature: ${forecastTemperatureCelsius.toFixed(1)} °C</p>
-              <p>Humidity: ${forecast.main.humidity} %</p>
+  try {
+    const currentConditions = weatherData.list[0];
+
+    // Convert temperature from Kelvin to Celsius
+    const temperatureCelsius = currentConditions.main.temp - 273.15;
+
+    // Update current conditions UI
+    document.getElementById('today').innerHTML = `
+      <h2 class="card-title" >${weatherData.city.name}, ${weatherData.city.country}</h2>
+      <p class="card-text">Date: ${new Date(currentConditions.dt * 1000).toLocaleDateString()}</p>
+      <p class="card-text">Temperature: ${temperatureCelsius.toFixed(1)} °C</p>
+      <p class="card-text">Humidity: ${currentConditions.main.humidity} %</p>
+      <p class="card-text">Wind Speed: ${currentConditions.wind.speed} m/s</p>
+      <i class="material-icons">${iconMappings[currentConditions.weather[0].icon]}</i>
+    `;
+
+    // Update 5-day forecast UI
+    const forecastContainer = document.getElementById('forecast');
+    forecastContainer.innerHTML = '';
+
+    const row = document.createElement('div');
+    row.className = 'row';
+
+    for (let i = 1; i < 6; i++) {
+      const forecast = weatherData.list[i * 8];
+
+      if (forecast) {
+        // Convert temperature from Kelvin to Celsius
+        const forecastTemperatureCelsius = forecast.main.temp - 273.15;
+
+        // Create a Bootstrap card for each forecast
+        const card = document.createElement('div');
+        card.className = 'col-md-3'; // Adjust the column size as needed
+
+        card.innerHTML = `
+          <div class="card bg-info">
+            <div class="card-body">
+              <h5 class="card-title">${new Date(forecast.dt * 1000).toLocaleDateString()}</h5>
+              <p class="card-text">Temperature: ${forecastTemperatureCelsius.toFixed(1)} °C</p>
+              <p class="card-text">Humidity: ${forecast.main.humidity} %</p>
               <i class="material-icons">${iconMappings[forecast.weather[0].icon]}</i>
             </div>
-          `;
-        }
+          </div>
+        `;
+
+        row.appendChild(card);
       }
-    } catch (error) {
-      console.error('Error updating UI:', error);
     }
+
+    forecastContainer.appendChild(row);
+  } catch (error) {
+    console.error('Error updating UI:', error);
+  }
 }
+
 
 // Function to save data to localStorage
 function saveToLocalStorage(key, value) {
